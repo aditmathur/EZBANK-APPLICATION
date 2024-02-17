@@ -37,3 +37,6 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+tasks.named('bootBuildImage'){
+	imageName = 'aditmathur/loans:v1'
+}
