@@ -43,6 +43,6 @@ jib{
 		image = 'openjdk:21-jdk-slim'
 	}
 	to {
-		image = 'aditmathur/loans:v1'
+		image = 'aditmathur/ezbank-loans:v1'
 	}
 }

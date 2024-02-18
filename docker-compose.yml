@@ -1,0 +1,3 @@
+services:
+  accounts:
+    image: "aditmathur/ezbank-accounts"
