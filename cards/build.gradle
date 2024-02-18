@@ -42,4 +42,7 @@ jib{
 	from {
 		image = 'openjdk:21-jdk-slim'
 	}
+	to {
+		image = 'aditmathur/cards:v1'
+	}
 }
