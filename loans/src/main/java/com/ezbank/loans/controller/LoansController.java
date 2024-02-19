@@ -2,6 +2,7 @@ package com.ezbank.loans.controller;
 
 import com.ezbank.loans.constants.LoansConstants;
 import com.ezbank.loans.dto.ErrorResponseDTO;
+import com.ezbank.loans.dto.LoansContactInfoDTO;
 import com.ezbank.loans.dto.LoansDTO;
 import com.ezbank.loans.dto.ResponseDTO;
 import com.ezbank.loans.service.ILoansService;
@@ -38,6 +39,9 @@ public class LoansController {
 
     @Autowired
     private Environment environment;
+
+    @Autowired
+    private LoansContactInfoDTO loansContactInfoDTO;
 
     @Operation(summary = "Create Loan REST API", description = "REST API to create new loan inside EZBank")
     @ApiResponses({@ApiResponse(responseCode = "201", description = "HTTP Status CREATED"), @ApiResponse(responseCode = "500", description = "HTTP Status Internal Server Error", content = @Content(schema = @Schema(implementation = ErrorResponseDTO.class)))})
@@ -93,5 +97,14 @@ public class LoansController {
     public ResponseEntity<String> getJavaVersion() {
 
         return ResponseEntity.status(HttpStatus.OK).body(environment.getProperty("JAVA_HOME"));
+    }
+
+
+    @Operation(summary = "Get Contact Info", description = "Get Contact Info that can be reached out in case of any issues")
+    @ApiResponses({@ApiResponse(responseCode = "200", description = "HTTP Status OK"), @ApiResponse(responseCode = "500", description = "HTTP Status Internal Server Error", content = @Content(schema = @Schema(implementation = ErrorResponseDTO.class)))})
+    @GetMapping("/contact-info")
+    public ResponseEntity<LoansContactInfoDTO> getContactInfo() {
+
+        return ResponseEntity.status(HttpStatus.OK).body(loansContactInfoDTO);
     }
 }

@@ -1,6 +1,7 @@
 package com.ezbank.accounts.controller;
 
 import com.ezbank.accounts.constants.AccountsConstants;
+import com.ezbank.accounts.dto.AccountsContactInfoDTO;
 import com.ezbank.accounts.dto.CustomerDTO;
 import com.ezbank.accounts.dto.ErrorResponseDTO;
 import com.ezbank.accounts.dto.ResponseDTO;
@@ -38,6 +39,8 @@ public class AccountsController {
     @Autowired
     private Environment environment;
 
+    @Autowired
+    private AccountsContactInfoDTO accountsContactInfoDTO;
 
 
     @Operation(summary = "Create Account REST API", description = "REST API to create new Customer & Account inside EZBank")
@@ -97,5 +100,13 @@ public class AccountsController {
     public ResponseEntity<String> getJavaVersion() {
 
         return ResponseEntity.status(HttpStatus.OK).body(environment.getProperty("JAVA_HOME"));
+    }
+
+    @Operation(summary = "Get Contact Info", description = "Get Contact Info that can be reached out in case of any issues")
+    @ApiResponses({@ApiResponse(responseCode = "200", description = "HTTP Status OK"), @ApiResponse(responseCode = "500", description = "HTTP Status Internal Server Error", content = @Content(schema = @Schema(implementation = ErrorResponseDTO.class)))})
+    @GetMapping("/contact-info")
+    public ResponseEntity<AccountsContactInfoDTO> getContactInfo() {
+
+        return ResponseEntity.status(HttpStatus.OK).body(accountsContactInfoDTO);
     }
 }

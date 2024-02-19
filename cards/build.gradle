@@ -43,6 +43,6 @@ jib{
 		image = 'openjdk:21-jdk-slim'
 	}
 	to {
-		image = 'aditmathur/ezbank-cards:v2-config-environment-interface'
+		image = 'aditmathur/ezbank-cards:v2-config-configurationProperties-annotation'
 	}
 }
