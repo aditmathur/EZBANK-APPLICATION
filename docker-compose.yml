@@ -1,6 +1,6 @@
 services:
   accounts:
-    image: "aditmathur/ezbank-accounts:v3-configserver-git"
+    image: "aditmathur/ezbank-accounts:v3-configserver-git-actuator-refresh"
     container_name: "accounts-ms"
     ports:
       - "8080:8080"
@@ -12,7 +12,7 @@ services:
       - "ezbank"
 
   loans:
-    image: "aditmathur/ezbank-loans:v3-configserver-git"
+    image: "aditmathur/ezbank-loans:v3-configserver-git-actuator-refresh"
     container_name: "loans-ms"
     ports:
       - "8090:8090"
@@ -23,7 +23,7 @@ services:
     networks:
       - "ezbank"
   cards:
-    image: "aditmathur/ezbank-cards:v3-configserver-git"
+    image: "aditmathur/ezbank-cards:v3-configserver-git-actuator-refresh"
     container_name: "cards-ms"
     ports:
       - "9000:9000"
