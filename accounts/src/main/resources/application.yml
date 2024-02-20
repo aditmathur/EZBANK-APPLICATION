@@ -2,6 +2,10 @@ server:
   port: 8080
 
 spring:
+  application:
+    name: "accounts"
+  profiles:
+    active: "prod"
   datasource:
     url: jdbc:h2:mem:testdb
     driverClassName: org.h2.Driver
@@ -15,15 +19,8 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  config:
+    import: "optional:configserver:http://localhost:8071/"
 
 build:
   version: "1.0"
-
-accounts:
-  message: "Welcome to EZBank account related local APIs"
-  contactDetails:
-    name: "Adit Mathur"
-    email: "aditmathur@ezbank.com"
-  onCallSupport:
-    -"(555)555-1234"
-    -"(555)555-1234"

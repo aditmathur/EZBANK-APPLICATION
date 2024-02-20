@@ -12,12 +12,6 @@ java {
 	sourceCompatibility = '21'
 }
 
-configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
-}
-
 repositories {
 	mavenCentral()
 }
@@ -28,15 +22,7 @@ ext {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
-	implementation 'org.springframework.cloud:spring-cloud-starter-config'
-	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'com.h2database:h2'
-	annotationProcessor 'org.projectlombok:lombok'
+	implementation 'org.springframework.cloud:spring-cloud-config-server'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
@@ -55,6 +41,6 @@ jib{
 		image = 'openjdk:21-jdk-slim'
 	}
 	to {
-		image = 'aditmathur/ezbank-accounts:v3-configserver-git'
+		image = 'aditmathur/ezbank-configserver:v1'
 	}
 }
