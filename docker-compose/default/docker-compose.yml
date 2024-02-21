@@ -11,6 +11,8 @@ services:
       timeout: 5s
       retries: 10
       start_period: 5s
+    networks:
+      - "ezbank"
 
   configserver:
     image: "aditmathur/ezbank-configserver:v2"
@@ -51,6 +53,7 @@ services:
       SPRING_APPLICATION_NAME: "accounts"
       SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
       SPRING_PROFILE_ACTIVE: "default"
+
 
   loans:
     image: "aditmathur/ezbank-loans:v3-configserver-git-actuator-refresh"
