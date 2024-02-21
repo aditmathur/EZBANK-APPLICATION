@@ -55,6 +55,6 @@ jib{
 		image = 'openjdk:21-jdk-slim'
 	}
 	to {
-		image = 'aditmathur/ezbank-loans:v3-configserver-git-actuator-refresh'
+		image = 'aditmathur/ezbank-loans:v2'
 	}
 }
