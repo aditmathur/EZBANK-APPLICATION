@@ -53,7 +53,7 @@ services:
       SPRING_APPLICATION_NAME: "accounts"
       SPRING_DATASOURCE_URL: "jdbc:mysql://accountsdb:3306/accountsdb"
     depends_on:
-      configserver:
+      accountsdb:
         condition: service_healthy
     extends:
       file: common-config.yml
