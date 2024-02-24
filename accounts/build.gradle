@@ -57,6 +57,6 @@ jib{
 		image = 'openjdk:21-jdk-slim'
 	}
 	to {
-		image = 'aditmathur/ezbank-accounts:v4-eureka-feign'
+		image = 'aditmathur/ezbank-accounts:v5-gatewayserver'
 	}
 }

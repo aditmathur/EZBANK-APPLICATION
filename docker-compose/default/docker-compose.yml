@@ -30,7 +30,7 @@ services:
       service: "microservice-db-config"
 
   configserver:
-    image: "aditmathur/ezbank-configserver:v4-eureka-feign"
+    image: "aditmathur/ezbank-configserver:v5-gatewayserver"
     container_name: "configserver-ms"
     ports:
       - "8071:8071"
@@ -45,7 +45,7 @@ services:
       service: "microservice-base-config"
 
   eurekaserver:
-    image: "aditmathur/ezbank-eurekaserver:v4-eureka-feign"
+    image: "aditmathur/ezbank-eurekaserver:v5-gatewayserver"
     container_name: "eurekaserver-ms"
     ports:
       - "8070:8070"
@@ -62,7 +62,7 @@ services:
       service: "microservice-configserver-config"
 
   accounts:
-    image: "aditmathur/ezbank-accounts:v4-eureka-feign"
+    image: "aditmathur/ezbank-accounts:v5-gatewayserver"
     container_name: "accounts-ms"
     ports:
       - "8080:8080"
@@ -77,7 +77,7 @@ services:
       service: microservice-eureka-config
 
   loans:
-    image: "aditmathur/ezbank-loans:v4-eureka-feign"
+    image: "aditmathur/ezbank-loans:v5-gatewayserver"
     container_name: "loans-ms"
     ports:
       - "8090:8090"
@@ -93,7 +93,7 @@ services:
 
 
   cards:
-    image: "aditmathur/ezbank-cards:v4-eureka-feign"
+    image: "aditmathur/ezbank-cards:v5-gatewayserver"
     container_name: "cards-ms"
     ports:
       - "9000:9000"
