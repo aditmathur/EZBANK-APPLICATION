@@ -1,8 +1,9 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.2.2'
+	id 'org.springframework.boot' version '3.2.3'
 	id 'io.spring.dependency-management' version '1.1.4'
 	id 'com.google.cloud.tools.jib' version '3.4.0'
+
 }
 
 group = 'com.ezbank'
@@ -10,12 +11,6 @@ version = '0.0.1-SNAPSHOT'
 
 java {
 	sourceCompatibility = '21'
-}
-
-configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
 }
 
 repositories {
@@ -28,16 +23,8 @@ ext {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
 	implementation 'org.springframework.cloud:spring-cloud-starter-config'
-	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-	implementation 'mysql:mysql-connector-java:8.0.33'
-	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	annotationProcessor 'org.projectlombok:lombok'
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
@@ -50,11 +37,12 @@ dependencyManagement {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
 jib{
 	from {
 		image = 'openjdk:21-jdk-slim'
 	}
 	to {
-		image = 'aditmathur/ezbank-cards:v4-eureka-feign'
+		image = 'aditmathur/ezbank-eurekaserver:v4-eureka-feign'
 	}
 }

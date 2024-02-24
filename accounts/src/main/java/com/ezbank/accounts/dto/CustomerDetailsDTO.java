@@ -8,8 +8,8 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-@Schema(name = "Customer", description = "Schema to hold Customer and Account Information")
-public class CustomerDTO {
+@Schema(name = "CustomerDetails", description = "Schema to hold Customer, Account, Cards and Loans Information")
+public class CustomerDetailsDTO {
 
     @NotEmpty(message = "Name can not be null or empty")
     @Size(min = 5, max = 30, message = "The length of customer name should be between 5 to 30 characters")
@@ -30,4 +30,12 @@ public class CustomerDTO {
 
     @Schema(description = "Account Details of the Customer")
     private AccountsDTO accountsDTO;
+
+    @Schema(description = "Loan Details of the Customer")
+    private LoansDTO loansDTO;
+
+    @Schema(description = "Cards Details of the Customer")
+    private CardsDTO cardsDTO;
+
+
 }
