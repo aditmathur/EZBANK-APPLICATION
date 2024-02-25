@@ -7,7 +7,7 @@ spring:
     gateway:
       discovery:
         locator:
-          enabled: true
+          enabled: false
           lowerCaseServiceId: true
 
 management:
@@ -22,9 +22,14 @@ management:
     env:
       enabled: true
 
-
 info:
   app:
     name: "gatewayserver"
     description: "EZBank Gateway Server Application"
     version: "1.0.0"
+
+logging:
+  level:
+    com:
+      ezbank:
+        gatewayserver: DEBUG

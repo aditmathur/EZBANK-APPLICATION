@@ -4,5 +4,5 @@ import com.ezbank.accounts.dto.CustomerDetailsDTO;
 
 public interface ICustomersService {
 
-    CustomerDetailsDTO fetchCustomerDetails(String mobileNumber);
+    CustomerDetailsDTO fetchCustomerDetails(String mobileNumber, String correlationId);
 }

@@ -30,8 +30,6 @@ services:
     depends_on:
       configserver:
         condition: service_healthy
-      eurekaserver:
-        condition: service_healthy
     environment:
       SPRING_PROFILES_ACTIVE: prod
       SPRING_CONFIG_IMPORT: configserver:http://configserver:8071/
