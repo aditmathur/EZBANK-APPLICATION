@@ -1,0 +1,17 @@
+call cd accounts 
+call gradle jibDockerBuild 
+call cd ..
+call cd loans
+call gradle jibDockerBuild 
+call cd ..
+call cd cards 
+call gradle jibDockerBuild 
+call cd ..
+call cd configserver 
+call gradle jibDockerBuild 
+call cd ..
+call cd eurekaserver 
+call gradle jibDockerBuild 
+call cd ..
+call cd gatewayserver 
+call gradle jibDockerBuild 

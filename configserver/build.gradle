@@ -41,6 +41,6 @@ jib{
 		image = 'openjdk:21-jdk-slim'
 	}
 	to {
-		image = 'aditmathur/ezbank-configserver:v5-gatewayserver'
+		image = 'aditmathur/ezbank-configserver:v6-resilience'
 	}
 }
