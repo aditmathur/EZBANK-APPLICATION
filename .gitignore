@@ -29,3 +29,6 @@ target/
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
+
+### Docker volume
+docker-compose/**/.data/**

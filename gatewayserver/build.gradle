@@ -27,6 +27,8 @@ dependencies {
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-reactor-resilience4j'
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis-reactive:3.2.3'
+	implementation 'io.micrometer:micrometer-registry-prometheus:1.12.3'
+	implementation 'io.opentelemetry.javaagent:opentelemetry-javaagent:2.1.0'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
@@ -43,9 +45,9 @@ tasks.named('test') {
 
 jib{
 	from {
-		image = 'openjdk:21-jdk-slim'
+		image = 'amazoncorretto:21-alpine3.19'
 	}
 	to {
-		image = 'aditmathur/ezbank-gatewayserver:v6-resilience'
+		image = 'aditmathur/ezbank-gatewayserver:v7-observability-monitoring'
 	}
 }
