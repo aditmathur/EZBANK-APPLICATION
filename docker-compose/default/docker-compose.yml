@@ -229,7 +229,7 @@ services:
       service: "microservice-db-config"
 
   configserver:
-    image: "aditmathur/ezbank-configserver:v7-observability-monitoring"
+    image: "aditmathur/ezbank-configserver:v8-security"
     container_name: "configserver-ms"
     ports:
       - "8071:8071"
@@ -246,7 +246,7 @@ services:
       OTEL_SERVICE_NAME: "configserver"
 
   eurekaserver:
-    image: "aditmathur/ezbank-eurekaserver:v7-observability-monitoring"
+    image: "aditmathur/ezbank-eurekaserver:v8-security"
     container_name: "eurekaserver-ms"
     ports:
       - "8070:8070"
@@ -264,7 +264,7 @@ services:
       service: "microservice-configserver-config"
 
   accounts:
-    image: "aditmathur/ezbank-accounts:v7-observability-monitoring"
+    image: "aditmathur/ezbank-accounts:v8-security"
     container_name: "accounts-ms"
     ports:
       - "8080:8080"
@@ -286,7 +286,7 @@ services:
       service: microservice-eureka-config
 
   loans:
-    image: "aditmathur/ezbank-loans:v7-observability-monitoring"
+    image: "aditmathur/ezbank-loans:v8-security"
     container_name: "loans-ms"
     ports:
       - "8090:8090"
@@ -309,7 +309,7 @@ services:
 
 
   cards:
-    image: "aditmathur/ezbank-cards:v7-observability-monitoring"
+    image: "aditmathur/ezbank-cards:v8-security"
     container_name: "cards-ms"
     ports:
       - "9000:9000"
@@ -331,7 +331,7 @@ services:
       service: microservice-eureka-config
 
   gatewayserver:
-    image: "aditmathur/ezbank-gatewayserver:v7-observability-monitoring"
+    image: "aditmathur/ezbank-gatewayserver:v8-security"
     container_name: "gatewayserver-ms"
     ports:
       - "8072:8072"

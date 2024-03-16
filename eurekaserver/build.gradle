@@ -45,6 +45,6 @@ jib{
 		image = 'amazoncorretto:21-alpine3.19'
 	}
 	to {
-		image = 'aditmathur/ezbank-eurekaserver:v7-observability-monitoring'
+		image = 'aditmathur/ezbank-eurekaserver:v8-security'
 	}
 }
