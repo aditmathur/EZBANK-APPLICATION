@@ -15,5 +15,6 @@ call gradle jibDockerBuild
 call cd ..
 call cd gatewayserver 
 call gradle jibDockerBuild
+cd ..
 call cd message
 call gradle jibDockerBuild
