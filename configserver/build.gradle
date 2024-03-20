@@ -43,6 +43,6 @@ jib{
 		image = 'amazoncorretto:21-alpine3.19'
 	}
 	to {
-		image = 'aditmathur/ezbank-configserver:v8-security'
+		image = 'aditmathur/ezbank-configserver:v9-event-driven-rabbitmq'
 	}
 }

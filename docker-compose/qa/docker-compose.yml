@@ -1,4 +1,19 @@
 services:
+  rabbit:
+    image: rabbitmq:3.13-management
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: rabbitmq-diagnostics check_port_connectivity
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+    extends:
+      file: common-config.yml
+      service: network-deploy-service
   keycloak:
     image: quay.io/keycloak/keycloak:24.0.1
     container_name: keycloak
@@ -242,7 +257,7 @@ services:
       service: "microservice-db-config"
 
   configserver:
-    image: "aditmathur/ezbank-configserver:v8-security"
+    image: "aditmathur/ezbank-configserver:v9-event-driven-rabbitmq"
     container_name: "configserver-ms"
     ports:
       - "8071:8071"
@@ -259,7 +274,7 @@ services:
       OTEL_SERVICE_NAME: "configserver"
 
   eurekaserver:
-    image: "aditmathur/ezbank-eurekaserver:v8-security"
+    image: "aditmathur/ezbank-eurekaserver:v9-event-driven-rabbitmq"
     container_name: "eurekaserver-ms"
     ports:
       - "8070:8070"
@@ -277,7 +292,7 @@ services:
       service: "microservice-configserver-config"
 
   accounts:
-    image: "aditmathur/ezbank-accounts:v8-security"
+    image: "aditmathur/ezbank-accounts:v9-event-driven-rabbitmq"
     container_name: "accounts-ms"
     healthcheck:
       test: "curl --fail --silent localhost:8080/actuator/health/readiness | grep UP || exit 1"
@@ -289,15 +304,18 @@ services:
       SPRING_APPLICATION_NAME: "accounts"
       OTEL_SERVICE_NAME: "accounts"
       SPRING_DATASOURCE_URL: "jdbc:mysql://accountsdb:3306/accountsdb"
+      SPRING_RABBITMQ_HOST: "rabbit"
     depends_on:
       accountsdb:
+        condition: service_healthy
+      rabbit:
         condition: service_healthy
     extends:
       file: common-config.yml
       service: microservice-eureka-config
 
   loans:
-    image: "aditmathur/ezbank-loans:v8-security"
+    image: "aditmathur/ezbank-loans:v9-event-driven-rabbitmq"
     container_name: "loans-ms"
     healthcheck:
       test: "curl --fail --silent localhost:8090/actuator/health/readiness | grep UP || exit 1"
@@ -318,7 +336,7 @@ services:
 
 
   cards:
-    image: "aditmathur/ezbank-cards:v8-security"
+    image: "aditmathur/ezbank-cards:v9-event-driven-rabbitmq"
     container_name: "cards-ms"
     healthcheck:
       test: "curl --fail --silent localhost:9000/actuator/health/readiness | grep UP || exit 1"
@@ -338,7 +356,7 @@ services:
       service: microservice-eureka-config
 
   gatewayserver:
-    image: "aditmathur/ezbank-gatewayserver:v8-security"
+    image: "aditmathur/ezbank-gatewayserver:v9-event-driven-rabbitmq"
     container_name: "gatewayserver-ms"
     ports:
       - "8072:8072"
@@ -357,6 +375,17 @@ services:
       file: common-config.yml
       service: microservice-eureka-config
 
+  message:
+    image: "eazybytes/message:v9-event-driven-rabbitmq"
+    container_name: message-ms
+    depends_on:
+      rabbit:
+        condition: service_healthy
+    environment:
+      SPRING_RABBITMQ_HOST: "rabbit"
+    extends:
+      file: common-config.yml
+      service: network-deploy-service
 
 networks:
   ezbank:

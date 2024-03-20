@@ -14,4 +14,6 @@ call cd eurekaserver
 call gradle jibDockerBuild 
 call cd ..
 call cd gatewayserver 
-call gradle jibDockerBuild 
+call gradle jibDockerBuild
+call cd message
+call gradle jibDockerBuild
