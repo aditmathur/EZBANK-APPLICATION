@@ -57,6 +57,6 @@ jib{
 		image = 'amazoncorretto:21-alpine3.19'
 	}
 	to {
-		image = 'aditmathur/ezbank-loans:v9-event-driven-rabbitmq'
+		image = 'aditmathur/ezbank-loans:v10-event-driven-kafka'
 	}
 }

@@ -27,16 +27,13 @@ spring:
       bindings:
         sendCommunication-out-0:
           destination: send-communication
-        updateCommunication-out-0:
+        updateCommunication-in-0:
           destination: communication-sent
           group: ${spring.application.name}
-
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
-    connectionTimeout: 10s
+      kafka:
+        binder:
+          brokers:
+            - localhost:9092
 
 eureka:
   instance:

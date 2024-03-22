@@ -23,9 +23,7 @@ ext {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'org.springframework.cloud:spring-cloud-stream:4.1.0'
-	implementation 'org.springframework.cloud:spring-cloud-stream-binder-rabbit:4.1.0'
-//	implementation 'org.springframework.cloud:spring-cloud-function-context'
-//	implementation 'org.springframework.cloud:spring-cloud-starter-function-web:4.1.0'
+	implementation 'org.springframework.cloud:spring-cloud-stream-binder-kafka:4.1.0'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
@@ -44,6 +42,6 @@ jib{
 		image = 'amazoncorretto:21-alpine3.19'
 	}
 	to {
-		image = 'aditmathur/ezbank-message:v9-event-driven-rabbitmq'
+		image = 'aditmathur/ezbank-message:v10-event-driven-kafka'
 	}
 }
