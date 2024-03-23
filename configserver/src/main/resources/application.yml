@@ -8,8 +8,6 @@ spring:
       server:
         git:
           uri: "https://github.com/aditmathur/EZBANK-CONFIG.git"
-          username: aditmathur
-          password: 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
           default-label: "main"
           timeout: 10
           clone-on-start: true
