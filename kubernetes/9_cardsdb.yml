@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cardsdb-deployment
+spec:
+  selector:
+    matchLabels:
+      app: cardsdb
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: cardsdb
+    spec:
+      containers:
+        - image: mysql:latest
+          name: cardsdb
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: cardsdb-secret
+                  key: password
+          ports:
+            - containerPort: 3306
+              name: cardsdb
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cardsdb
+spec:
+  ports:
+    - port: 3308
+  selector:
+    app: cardsdb
